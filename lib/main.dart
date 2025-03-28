@@ -1,4 +1,55 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:firebase_core/firebase_core.dart';
+// ignore: unused_import
+import 'home_page.dart'; // Import de la page principale
+// ignore: unused_import
+import 'addProduct.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(); // Initialisation de Firebase
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Gestion des Produits',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Accueil')),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Addproduct()),
+            );
+          },
+          child: Text('Ajouter un Produit'),
+        ),
+      ),
+    );
+  }
+}
+
+
+/*import 'package:flutter/material.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -142,4 +193,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-}
+}*/
